@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>美股交易时间雷达</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">NYSE / Nasdaq</p>
+          <h1>美股交易时间雷达</h1>
+        </div>
+        <div class="controls" aria-label="时间控制">
+          <label class="switch">
+            <input id="autoNow" type="checkbox" checked />
+            <span>实时</span>
+          </label>
+          <input id="timeTravel" type="datetime-local" />
+          <button id="jumpNow" type="button">现在</button>
+        </div>
+      </header>
+
+      <section class="status-grid" aria-live="polite">
+        <article class="status-panel">
+          <div class="status-line">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="phaseLabel" class="phase-label">计算中</span>
+          </div>
+          <h2 id="primaryStatus">正在读取交易时间</h2>
+          <p id="statusDetail" class="muted">请稍等</p>
+          <div class="countdown">
+            <span id="eventLabel">下一事件</span>
+            <strong id="eventCountdown">--:--:--</strong>
+          </div>
+        </article>
+
+        <article class="clock-panel">
+          <div class="clock-row">
+            <span>你的本地时间</span>
+            <strong id="localClock">--:--</strong>
+          </div>
+          <div class="clock-row">
+            <span>北京时间</span>
+            <strong id="chinaClock">--:--</strong>
+          </div>
+          <div class="clock-row">
+            <span>纽约时间</span>
+            <strong id="newYorkClock">--:--</strong>
+          </div>
+          <p id="dstNote" class="muted"></p>
+        </article>
+
+        <article class="today-panel">
+          <p class="section-label">纽约交易日</p>
+          <h2 id="exchangeDate">--</h2>
+          <p id="todayVerdict" class="verdict">--</p>
+          <p id="holidayNote" class="muted"></p>
+        </article>
+      </section>
+
+      <section class="timeline-section">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">今日时段</p>
+            <h2>从盘前到盘后</h2>
+          </div>
+          <span id="timelineRange" class="pill">纽约时间</span>
+        </div>
+        <div class="timeline">
+          <div id="timelineNow" class="timeline-now"></div>
+          <div id="segmentPremarket" class="segment premarket"></div>
+          <div id="segmentRegular" class="segment regular"></div>
+          <div id="segmentAfterhours" class="segment afterhours"></div>
+        </div>
+        <div id="sessionList" class="sessions"></div>
+      </section>
+
+      <section class="detail-grid">
+        <article class="upcoming-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-label">接下来</p>
+              <h2>最近交易日</h2>
+            </div>
+          </div>
+          <div id="upcomingList" class="upcoming-list"></div>
+        </article>
+
+        <article class="calendar-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-label">月历</p>
+              <h2 id="calendarTitle">--</h2>
+            </div>
+          </div>
+          <div class="calendar-weekdays">
+            <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </article>
+      </section>
+
+      <footer>
+        <span id="utcNote">北京时间：UTC+8；纽约时间按夏令时变化。</span>
+        <span>数据规则：NYSE / Nasdaq 官方 2026-2028 假期和交易时间。</span>
+        <a href="https://www.nyse.com/trade/hours-calendars?os=0" target="_blank" rel="noreferrer">NYSE 日历</a>
+        <a href="https://www.nasdaq.com/market-activity/stock-market-holiday-schedule" target="_blank" rel="noreferrer">Nasdaq 日历</a>
+      </footer>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
