@@ -1,5 +1,7 @@
 # US Stock Time
 
+![US Stock Time dashboard preview](./assets/preview.svg)
+
 A tiny static dashboard for checking whether the US stock market is open, with Beijing time and New York time shown side by side.
 
 ## Features
